@@ -29,13 +29,13 @@ import com.streamsets.pipeline.config.WholeFileExistsAction;
 import com.streamsets.pipeline.lib.event.WholeFileProcessedEvent;
 import com.streamsets.pipeline.lib.io.fileref.FileRefTestUtil;
 import com.streamsets.pipeline.lib.io.fileref.FileRefUtil;
-import com.streamsets.pipeline.stage.connection.remote.Protocol;
+import com.streamsets.pipeline.lib.remote.FTPAndSSHDUnitTest;
 import com.streamsets.pipeline.lib.tls.KeyStoreType;
 import com.streamsets.pipeline.sdk.ContextInfoCreator;
 import com.streamsets.pipeline.sdk.DataCollectorServicesUtils;
 import com.streamsets.pipeline.sdk.TargetRunner;
 import com.streamsets.pipeline.stage.connection.remote.Authentication;
-import com.streamsets.pipeline.lib.remote.FTPAndSSHDUnitTest;
+import com.streamsets.pipeline.stage.connection.remote.Protocol;
 import com.streamsets.pipeline.stage.connection.remote.RemoteConnection;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.sshd.common.FactoryManager;
@@ -173,11 +173,13 @@ public class TestRemoteUploadTarget extends FTPAndSSHDUnitTest {
     }
     // Wait until that one connection has been closed
     if (scheme == Scheme.sftp) {
-      await().atMost(10, TimeUnit.SECONDS).until(() -> Assert.assertEquals(1, closed.get()));
+      await().atMost(10, TimeUnit.SECONDS).untilAsserted(() -> Assert.assertEquals(1, closed.get()));
       Assert.assertEquals(1, closed.get());
     } else if (scheme == Scheme.ftp) {
-      await().atMost(10, TimeUnit.SECONDS).until(
-          () -> Assert.assertEquals(0, ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber()));
+      await().atMost(10, TimeUnit.SECONDS).untilAsserted(() -> Assert.assertEquals(
+          0,
+          ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber()
+      ));
       Assert.assertEquals(0, ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber());
     }
     if (scheme == Scheme.sftp) {

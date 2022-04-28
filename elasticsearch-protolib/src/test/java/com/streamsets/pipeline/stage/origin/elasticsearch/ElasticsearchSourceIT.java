@@ -396,10 +396,11 @@ public class ElasticsearchSourceIT extends ElasticsearchBaseIT {
 
       await().atLeast(5, SECONDS).atMost(6, SECONDS).until(() -> {
         try {
-          runner.waitOnProduce();
+           runner.waitOnProduce();
         } catch (final Exception ex) {
           throw new RuntimeException(ex);
         }
+        return null;
       });
 
       assertEquals(22, batchCount.get());

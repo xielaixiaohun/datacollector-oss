@@ -34,7 +34,7 @@
 
   <properties>
     <kinesis.client.version>1.14.0</kinesis.client.version>
-    <kpl.version>0.14.3</kpl.version>
+    <kpl.version>0.14.12</kpl.version>
     <kinesis.protobuf.version>3.11.4</kinesis.protobuf.version>
     <commons-math3.version>3.5</commons-math3.version>
   </properties>
@@ -112,10 +112,15 @@
       <version>${kinesis.client.version}</version>
       <exclusions>
         <exclusion>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
+          <groupId>com.google.protobuf</groupId>
+          <artifactId>protobuf-java</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.snakeyaml</groupId>
+      <artifactId>snakeyaml-engine</artifactId>
+      <version>2.1</version>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -125,6 +130,10 @@
         <exclusion>
           <groupId>com.google.protobuf</groupId>
           <artifactId>protobuf-java</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>annotations</artifactId>
+          <groupId>org.jetbrains</groupId>
         </exclusion>
       </exclusions>
     </dependency>

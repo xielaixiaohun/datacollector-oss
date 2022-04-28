@@ -39,7 +39,7 @@
       <directory>${project.basedir}/src/main</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>aux/**</include>
+        <include>auxs/**</include>
         <include>images/**</include>
         <include>scripts/**</include>
         <include>META-INF/**</include>

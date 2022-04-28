@@ -1412,11 +1412,13 @@ public class TestRemoteDownloadSource extends FTPAndSSHDUnitTest {
     }
     // Wait until that one connection has been closed
     if (scheme == Scheme.sftp) {
-      await().atMost(10, TimeUnit.SECONDS).until(() -> Assert.assertEquals(1, closed.get()));
+      await().atMost(10, TimeUnit.SECONDS).untilAsserted(() -> Assert.assertEquals(1, closed.get()));
       Assert.assertEquals(1, closed.get());
     } else if (scheme == Scheme.ftp) {
-      await().atMost(10, TimeUnit.SECONDS).until(
-          () -> Assert.assertEquals(0, ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber()));
+      await().atMost(10, TimeUnit.SECONDS).untilAsserted(() -> Assert.assertEquals(
+          0,
+          ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber()
+      ));
       Assert.assertEquals(0, ftpServer.getServerContext().getFtpStatistics().getCurrentConnectionNumber());
     }
     if (scheme == Scheme.sftp) {

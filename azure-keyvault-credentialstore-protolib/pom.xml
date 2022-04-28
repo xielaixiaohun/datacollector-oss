@@ -34,8 +34,8 @@
   <packaging>jar</packaging>
 
   <properties>
-    <azure-keyvault.version>1.2.4</azure-keyvault.version>
-    <azure.version>1.38.1</azure.version>
+    <azure-keyvault.version>1.2.6</azure-keyvault.version>
+    <azure.version>1.41.3</azure.version>
   </properties>
 
   <dependencies>

@@ -112,6 +112,7 @@ public class TestDelayProcessor {
     // when
     await().atMost(delay + TIME_LAG, MILLISECONDS).until(() -> {
       processor.process(batch, maker);
+      return null;
     });
 
     //then

@@ -40,7 +40,7 @@
     <edge.dist-dir>${basedir}/dist/target/edge-binaries</edge.dist-dir>
     <sdc.log4j.level>DEBUG</sdc.log4j.level>
     <snappy.version>1.0.5</snappy.version>
-    <datacollector-edge.version>3.23.0-SNAPSHOT</datacollector-edge.version>
+    <datacollector-edge.version>3.16.0</datacollector-edge.version>
   </properties>
 
   <dependencies>
@@ -179,6 +179,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>copy-dependency</id>
@@ -234,9 +235,9 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <skip>${skipTests}</skip>
+          <skip>true</skip>
         </configuration>
-        <executions>
+        <!--<executions>
           <execution>
             <id>default-cli</id>
             <goals>
@@ -247,7 +248,7 @@
               <executable>src/test/libexec/run_tests.sh</executable>
             </configuration>
           </execution>
-        </executions>
+        </executions>-->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

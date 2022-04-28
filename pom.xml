@@ -92,8 +92,8 @@
     <wholefile-transformer-lib>wholefile-transformer-lib</wholefile-transformer-lib>
     <windows-lib>windows-lib</windows-lib>
     <rootProject>true</rootProject>
-    <datacollector-api.version>3.23.0-SNAPSHOT</datacollector-api.version>
-    <datacollector-spark-api.version>3.23.0-SNAPSHOT</datacollector-spark-api.version>
+    <datacollector-api.version>3.22.3</datacollector-api.version>
+    <datacollector-spark-api.version>3.22.3</datacollector-spark-api.version>
     <thycotic-credentialstore-lib>thycotic-credentialstore-lib</thycotic-credentialstore-lib>
   </properties>
 
@@ -248,7 +248,7 @@
     <module>scripting-protolib</module>
     <module>wholefile-converter-protolib</module>
     <module>emr-protolib</module>
-    <module>databricks-ml-protolib</module>
+    <!--    <module>databricks-ml-protolib</module>-->
 
     <!--
          Stage libraries that always built with the data collector (they dont have protolibs)
@@ -483,15 +483,15 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
-            <executions>
-              <execution>
-                <id>rat-check</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-              </execution>
-            </executions>
+            <!-- <executions>
+               <execution>
+                 <id>rat-check</id>
+                 <phase>generate-sources</phase>
+                 <goals>
+                   <goal>exec</goal>
+                 </goals>
+               </execution>
+             </executions>-->
             <configuration>
               <executable>mvn</executable>
               <workingDirectory>${basedir}</workingDirectory>
@@ -706,7 +706,7 @@
         <module>mapr_6_1-mep6-lib</module>
         <module>mongodb_3-lib</module>
         <module>mongodb_4-lib</module>
-        <module>databricks-ml_2-lib</module>
+        <!--        <module>databricks-ml_2-lib</module>-->
       </modules>
     </profile>
 
@@ -763,7 +763,7 @@
         <module>hdp_3_1-lib</module>
         <module>jython_2_7-lib</module>
         <module>mongodb_4-lib</module>
-        <module>databricks-ml_2-lib</module>
+        <!--        <module>databricks-ml_2-lib</module>-->
       </modules>
     </profile>
 
@@ -784,6 +784,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.0.1</version>
             <executions>
               <execution>
                 <phase>verify</phase>
@@ -952,9 +953,29 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
+    <pluginRepository>
+      <id>alimaven</id>
+      <name>alimaven Repository</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </pluginRepository>
+
   </pluginRepositories>
 
   <repositories>
+
+    <repository>
+      <id>alimaven</id>
+      <name>alimaven Repository</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+    </repository>
+
     <repository>
       <id>cdh.repo</id>
       <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
@@ -1047,7 +1068,6 @@
       <id>kinetica-releases</id>
       <url>http://files.kinetica.com/nexus/content/repositories/releases/</url>
     </repository>
-
     <!-- Databricks ML -->
     <repository>
       <snapshots>
@@ -1055,8 +1075,9 @@
       </snapshots>
       <id>bintray-databricks-maven</id>
       <name>bintray</name>
-      <url>https://dl.bintray.com/databricks/maven</url>
+      <url>https://repos.spark-packages.org</url>
     </repository>
+
 
   </repositories>
 
